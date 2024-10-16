@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Task</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: white; /* White text */
+            font-family: Arial, sans-serif; /* Font family */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            flex-direction: column; /* Stack items vertically */
+        }
+        h1 {
+            margin-bottom: 20px; /* Space below heading */
+        }
+        .task-form {
+            width: 100%; /* Full width */
+            max-width: 400px; /* Limit maximum width */
+            padding: 20px; /* Padding inside task form */
+            background-color: #1e1e1e; /* Darker background for task form */
+            border-radius: 10px; /* Round corners */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+        }
+        input, textarea, select {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding inside inputs */
+            margin: 10px 0; /* Space above and below */
+            border: 1px solid white; /* Border for inputs */
+            background-color: #222; /* Dark background for inputs */
+            color: white; /* White text for inputs */
+            border-radius: 5px; /* Round corners */
+        }
+        button {
+            padding: 10px; /* Padding inside button */
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Round corners */
+            cursor: pointer; /* Change cursor on hover */
+            width: 100%; /* Full width */
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Task</h1>
+    <div class="task-form">
+        <form method="POST" action="/edit_task/{{ task.id }}">
+            <input type="text" name="title" value="{{ task.title }}" required>
+            <textarea name="description" required>{{ task.description }}</textarea>
+            <input type="date" name="due_date" value="{{ task.due_date.strftime('%Y-%m-%d') }}" required>
+            <select name="priority" required>
+                <option value="Low" {% if task.priority == 'Low' %}selected{% endif %}>Low</option>
+                <option value="Medium" {% if task.priority == 'Medium' %}selected{% endif %}>Medium</option>
+                <option value="High" {% if task.priority == 'High' %}selected{% endif %}>High</option>
+            </select>
+            <select name="status" required>
+                <option value="Pending" {% if task.status == 'Pending' %}selected{% endif %}>Pending</option>
+                <option value="Completed" {% if task.status == 'Completed' %}selected{% endif %}>Completed</option>
+                <option value="Canceled" {% if task.status == 'Canceled' %}selected{% endif %}>Canceled</option>
+            </select>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            background-color: black; /* Dark background */
+            color: white; /* White text */
+            font-family: Arial, sans-serif; /* Font family */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            flex-direction: column; /* Stack items vertically */
+        }
+        h1 {
+            margin-bottom: 20px; /* Space below heading */
+            text-align: center; /* Center the heading */
+        }
+        .form-container {
+            width: 100%;
+            max-width: 500px; /* Limit maximum width */
+            padding: 20px; /* Padding inside form container */
+            background-color: #1e1e1e; /* Darker background for form container */
+            border-radius: 10px; /* Round corners */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+            margin-bottom: 20px; /* Space below form container */
+        }
+        input, textarea, select {
+            width: 100%; /* Full width */
+            padding: 10px; /* Padding inside inputs */
+            margin: 10px 0; /* Space above and below */
+            border: 1px solid white; /* Border for inputs */
+            background-color: #222; /* Dark background for inputs */
+            color: white; /* White text for inputs */
+            border-radius: 5px; /* Round corners */
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+        button {
+            padding: 10px; /* Padding inside button */
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Round corners */
+            cursor: pointer; /* Change cursor on hover */
+            width: 100%; /* Full width */
+            margin-top: 10px; /* Space above button */
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        /* Link styles */
+        .link-container {
+            margin-top: 20px; /* Space above the links */
+        }
+        a {
+            color: #FFEB3B; /* Yellow color */
+            text-decoration: underline; /* Underline links */
+            display: block; /* Stack links vertically */
+            margin: 5px 0; /* Space between links */
+            text-align: center; /* Center links */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Your Task Manager</h1>
+
+    <!-- Form to add new tasks -->
+    <div class="form-container">
+        <form method="POST" action="/task_manager">
+            <input type="text" name="title" placeholder="Task Title" required>
+            <textarea name="description" placeholder="Task Description"></textarea>
+            <input type="date" name="due_date" required>
+            
+            <!-- Priority Dropdown -->
+            <select name="priority" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
+
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+
+    <!-- Link container for Previous Tasks and Logout -->
+    <div class="link-container">
+        <a href="/previous_tasks">Show Previous Tasks</a>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>

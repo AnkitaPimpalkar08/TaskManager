@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <a href="/add">Add a New Task</a>
+    
+    <h2>Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+        <li>
+            <strong>{{ task.title }}</strong><br>
+            Description: {{ task.description }}<br>
+            Due Date: {{ task.due_date.strftime('%Y-%m-%d') }}<br>
+            Priority: {{ task.priority }}<br>
+            Status: {{ task.status }}<br>
+            <a href="/complete/{{ task.title }}">Mark as Completed</a> |
+            <a href="/delete/{{ task.title }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

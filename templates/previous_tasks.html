@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Previous Tasks</title>
+    <style>
+        body {
+            background-color: #121212; /* Dark background */
+            color: white; /* White text */
+            font-family: Arial, sans-serif; /* Font family */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Flexbox for centering */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            height: 100vh; /* Full viewport height */
+            flex-direction: column; /* Stack items vertically */
+        }
+        h1 {
+            margin-bottom: 20px; /* Space below heading */
+            text-align: center; /* Center the heading */
+        }
+        .task-container {
+            width: 100%;
+            max-width: 600px; /* Limit maximum width */
+            padding: 20px; /* Padding inside task container */
+            background-color: #1e1e1e; /* Darker background for task container */
+            border-radius: 10px; /* Round corners */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Subtle shadow */
+            margin-bottom: 20px; /* Space below task container */
+        }
+        .task {
+            background-color: #333; /* Task background color */
+            padding: 15px; /* Padding inside task box */
+            margin-bottom: 15px; /* Space between tasks */
+            border-radius: 5px; /* Round corners */
+            border: 1px solid #444; /* Subtle border */
+        }
+        .button-container {
+            margin-top: 20px; /* Space above buttons */
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 5px; /* Reduced space between buttons */
+        }
+        button {
+            padding: 10px; /* Padding inside button */
+            background-color: #4CAF50; /* Green background */
+            color: white; /* White text */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Round corners */
+            cursor: pointer; /* Change cursor on hover */
+            width: 100%; /* Full width */
+        }
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+        /* Link styles */
+        a {
+            color: #FFEB3B; /* Yellow color */
+            text-decoration: underline; /* Underline links */
+            display: block; /* Stack links vertically */
+            margin: 5px 0; /* Space between links */
+            text-align: center; /* Center links */
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Previous Tasks</h1>
+    
+    <div class="task-container">
+        {% if tasks %}
+            {% for task in tasks %}
+            <div class="task">
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                <p><strong>Due Date:</strong> {{ task.due_date }}</p>
+                <p><strong>Priority:</strong> {{ task.priority }}</p>
+                <p><strong>Status:</strong> {{ task.status }}</p>
+                <form method="POST" action="/edit_task/{{ task.id }}">
+                    <button type="submit">Edit</button>
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No previous tasks available.</p>
+        {% endif %}
+    </div>
+
+    <div class="button-container">
+        <a href="/task_manager">Back to Task Manager</a>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
